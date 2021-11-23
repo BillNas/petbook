@@ -34,7 +34,7 @@ const createPet = async (req, reply) => {
 };
 const deletePet = async (req, reply) => {
 	const { id } = req.params;
-	if (!mongoose.Types.ObjectId.isValid(id)) return reply.code(404).send('No pet found');
+	if (!mongoose.Types.ObjectId.isValid(id)) return reply.code(404).send('No pet s');
 
 	try {
 		await Pet.findByIdAndRemove(id);
