@@ -34,7 +34,7 @@ const createPet = async (req, reply) => {
 };
 const deletePet = async (req, reply) => {
 	const { id } = req.params;
-	if (!mongoose.Types.ObjectId.isValid(id)) return reply.code(404).send('No pet s');
+	if (!mongoose.Types.ObjectId.isValid(id)) return reply.code(404).send(`No post with id: ${id} `);
 
 	try {
 		await Pet.findByIdAndRemove(id);
@@ -44,4 +44,16 @@ const deletePet = async (req, reply) => {
 	}
 };
 
-module.exports = { getPets, createPet, getPet, deletePet };
+ const likePet = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    
+    const post = await Pet.findById(id);
+
+    const updatedPost = await Pet.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+    
+    return updatedPost;
+}
+
+module.exports = { getPets, createPet, getPet, deletePet, likePet };

@@ -22,6 +22,11 @@ const routes = [
     url: '/api/pets/:id',
     handler: petController.deletePet
   },
+  {
+    method: 'PATCH',
+    url: '/api/pets/:id/like',
+    handler: petController.likePet
+  },
 ]
 
 module.exports = routes

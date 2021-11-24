@@ -9,13 +9,12 @@ const Posts = ({ setCurrentId }) => {
   
     return (
       !posts.length ? <Spinner animation="border" role="status">
-      
     </Spinner> : (
         <Container >
           <Row xs={2} md={4} lg={3}>
           {posts.map((post) => (
-            <Col>
-              <Post key={post._id}  post={post} setCurrentId={setCurrentId} />
+            <Col key={post._id}>
+              <Post post={post}/>
             </Col>
           ))}
           </Row>

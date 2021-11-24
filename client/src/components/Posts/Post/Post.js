@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Card, Button } from 'react-bootstrap';
-import { Trash } from 'react-bootstrap-icons';
-import { deletePet } from '../../../actions/posts';
+import { BsFillTrashFill,BsFillHandThumbsUpFill } from 'react-icons/bs';
+import { deletePet,likePost} from '../../../actions/posts';
 const Post = ({ post, setCurrentId }) => {
 	const dispatch = useDispatch();
 	return (
@@ -21,11 +21,11 @@ const Post = ({ post, setCurrentId }) => {
 				}
 			/>{' '}
 			<Card.Body>
-				<Card.Title> {post.title} </Card.Title>  <Card.Text> {post.tags.map((tag) => `#${tag} `)} </Card.Text> {' '}
+				<Card.Title> {post.title} </Card.Title> <Card.Text><b>{post.tags.map((tag) => `#${tag} `)} </b></Card.Text> {' '}
 				<Card.Subtitle className='mb-2 text-muted'> {moment(post.createdAt).fromNow()} </Card.Subtitle>{' '}
-				<Button variant='primary'> Go somewhere </Button> {' '}
+				<Button  style={{color: "blue"}}  size="small" variant="light" onClick={() => dispatch(likePost(post._id))}><BsFillHandThumbsUpFill /> LIKE {post.likeCount} </Button> {' '}
 				<Button size='small'variant="danger" onClick={() => dispatch(deletePet(post._id))}>
-					<Trash /> Delete{' '}
+					<BsFillTrashFill/> DELETE{' '}
 				</Button>{' '}
 			</Card.Body>{' '}
 			{' '}

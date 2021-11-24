@@ -6,6 +6,7 @@ import { getPosts } from './actions/posts';
 
 import NavBar from './components/NavBar'
 import Create from './components/Form'
+import Auth from './components/Auth/Auth'
 import { useDispatch } from 'react-redux';
 import Posts from './components/Posts/Posts';
 
@@ -22,11 +23,12 @@ const App = () => {
   <BrowserRouter>
    <NavBar />
    <Routes>
-        <Route path="/create" element={<Create/>} />
-        <Route path="/about" element={<Create/>} />
+        <Route exact path="/create" element={<Create/>} />
+        <Route exact path="/" element={<Posts/>} />
+        <Route exact path="/auth" element={<Auth/>} />
       </Routes>
   </BrowserRouter>
-   <Posts setCurrentId={setCurrentId} />
+
  </Container>
   );
 };
